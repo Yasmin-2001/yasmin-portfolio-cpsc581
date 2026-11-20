@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Yasmin Semsar’s CPSC 581 individual design portfolio. Interaction design, prototyping, and reflection.">
+<title>Yasmin Semsar | Design Portfolio</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<a class="skip" href="#content">Skip to content</a>
+<header class="top wrap"><a class="wordmark" href="#home">Yasmin Semsar</a><nav aria-label="Main navigation"><a href="#work">Projects</a><a href="#about">About</a></nav></header>
+<main id="content">
+<section id="home" class="hero wrap">
+<div class="intro"><p class="eyebrow"><span></span> CPSC 581 · Individual design portfolio</p><h1>Yasmin<br>Semsar</h1><p class="lead">I design interactions that make the next move feel natural.</p><p class="sub">Computer science student at the University of Calgary. I use sketches, code, and prototypes to explore how people discover what an interface can do.</p><a class="button" href="#work">Explore my projects</a></div>
+<section class="cat-room" aria-label="Interactive cat playground">
+<div class="cat-room-top"><span>THE CAT CORNER</span><button id="cat-pause" type="button" aria-pressed="false">Pause</button></div>
+<div class="cat-garden" id="cat-garden"><canvas id="cat-canvas" aria-label="Six cats in a cozy room: jumping, hiding, playing ball, and chasing a toy mouse"></canvas><div class="cat-access" aria-label="Pet the cats"><button data-pet="0">Pet Mochi</button><button data-pet="1">Pet Pepper</button><button data-pet="2">Pet Luna</button><button data-pet="3">Pet Olive</button><button data-pet="4">Pet Bean</button><button data-pet="5">Pet Pip</button></div></div>
+<div class="cat-room-bottom"><div><strong>A little curiosity lives here.</strong><span>Pet a cat. Watch their little stories unfold.</span></div><button id="food-refill" type="button">Fill the food bowl</button><span id="cat-message" role="status" aria-live="polite">Meet the residents.</span></div>
+</section>
+</section>
+<section id="work" class="work wrap">
+<div class="section-head"><h2>Course projects</h2><p>My role, design decisions, and what I learned.</p></div>
+<div class="project-grid">
+<a class="project" href="#constellation"><div class="visual stars"><img src="assets/constellation.png" alt="" loading="lazy"></div><div class="card-body"><p class="kicker">Project 1 · Playful interaction</p><h3>Team Constellation <span aria-hidden="true">↗</span></h3><p>Connecting stars to reveal shared interests.</p></div></a>
+<a class="project" href="#expertise"><div class="visual head-tracking-cover"><img src="assets/head-neutral.png" alt="Lighting Teacher prototype showing the 3D lighting scene and webcam head-tracking panel" loading="lazy"></div><div class="card-body"><p class="kicker">Project 2 · Embodied interaction</p><h3>Expertise Sharing <span aria-hidden="true">↗</span></h3><p>Webcam head tracking for a 3D view.</p></div></a>
+<a class="project" href="#pass-it-on"><div class="visual circuit"><img src="assets/wokwi.webp" alt="" loading="lazy"></div><div class="card-body"><p class="kicker">Project 3 · Physical computing</p><h3>Pass It On <span aria-hidden="true">↗</span></h3><p>A warm light cue for a shared meal.</p></div></a>
+</div>
+</section>
+<section class="case wrap" id="constellation">
+<p class="kicker">Project 1 · Team Constellation</p><h2>Four controls, two ways to discover a connection</h2>
+<div class="case-text"><div><h3>My role</h3><p>I proposed connecting members to reveal shared interests and a caption to explain what they had in common. I implemented much of the star-connection and shared-hobby behavior. The star metaphor came from a teammate and the visual design was collaborative.</p></div><div><h3>What changed</h3><p>My first sun-and-moon idea added two draggable controls. After the TA clarified the four-button requirement, I changed the sun and moon into fixed targets and made the existing member stars move toward them. The personality reveal stayed discoverable and the same four controls did more.</p></div></div>
+<div class="sketches">
+<figure><img src="assets/early-sketch.png" alt="Drawing of the initial interaction using a movable sun and moon" loading="lazy"><figcaption><strong>Initial concept</strong> · Move sun or moon toward a member.</figcaption></figure>
+<figure><img src="assets/revised-sketch.png" alt="Drawing of member stars dragged toward the fixed sun or moon" loading="lazy"><figcaption><strong>Revised concept</strong> · Move an existing star toward a fixed target.</figcaption></figure>
+</div>
+<p class="note">These drawings retrospectively explain the two concepts.</p><a class="text-link" href="https://ishikaghosh04.github.io/CPSC581A1/">Open the team prototype ↗</a>
+</section>
+<section class="case wrap" id="expertise">
+<p class="kicker">Project 2 · Lighting Teacher · Expertise Sharing</p><h2>Exploring a lighting scene through movement</h2>
+<p class="project-context">Lighting Teacher is a shared browser workspace where an expert sets a lighting reference and a novice tries to reproduce it. The team prototype combines a Three.js scene, live sessions, embodied controls, chat, and feedback.</p>
+<div class="case-text"><div><h3>My contribution</h3><p>I implemented webcam head tracking for the 3D scene, adding the tracking logic in <code>headTracking.ts</code> and connecting it to the camera in <code>scene.ts</code>. Moving sideways or up and down changes the viewpoint so the user can inspect the relationship between the light and the objects.</p></div><div><h3>From a subtle effect to visible feedback</h3><p>In initial testing, the camera movement was too subtle to notice. I increased the camera-offset sensitivity and tested it again, making the perspective change more apparent. Movement is measured relative to a neutral head position and smoothed to reduce jitter.</p></div></div>
+<div class="p2-comparison">
+<figure><img src="assets/head-neutral.png" alt="Lighting Teacher workspace with the webcam user facing forward at the neutral head position" loading="lazy"><figcaption><strong>Neutral position.</strong> A forward-facing reference establishes the starting viewpoint.</figcaption></figure>
+<figure><img src="assets/head-shifted.png" alt="The user turns sideways and the 3D scene is shown from a shifted camera viewpoint" loading="lazy"><figcaption><strong>Shifted viewpoint.</strong> Sideways head movement offsets the camera to inspect the scene.</figcaption></figure>
+</div>
+<ol class="flow" aria-label="Head-tracking interaction sequence"><li><strong>Enable</strong><span>Start tracking and allow webcam access.</span></li><li><strong>Calibrate</strong><span>Look straight ahead to establish a neutral position.</span></li><li><strong>Explore</strong><span>Move your head to shift the viewpoint.</span></li><li><strong>Disable</strong><span>Return to normal camera navigation.</span></li></ol>
+<div class="case-text"><div><h3>Why this input?</h3><p>Head movement lets the learner explore the scene while keeping lighting controls available. Conventional mouse navigation remains available for precision. This is a camera-offset interaction, rather than full six-degree-of-freedom tracking or physically accurate perspective correction.</p></div><div><h3>What the evidence shows</h3><p>The screenshots document the neutral and shifted viewpoints in the working prototype. Development checks covered webcam permission, calibration, camera response, and disabling tracking. These were iterative functional checks; we did not conduct a formal learning-outcome study. Lighting, camera placement, and face visibility can affect tracking.</p></div></div>
+<h3 class="p2-subheading">Another embodied input in the team prototype</h3>
+<p class="project-context">The final project also uses a calibrated iPhone controller to aim the spotlight. Phone orientation is sent to the desktop session, where the virtual light changes direction. The team revised the initial tilt mapping after testing revealed reversed or weak responses, using orientation relative to the calibrated reference instead.</p>
+<div class="p2-phone-gallery">
+<figure><img src="assets/phone-neutral.png" alt="An iPhone controller held in front of the Lighting Teacher desktop scene" loading="lazy"><figcaption>Calibrated phone reference.</figcaption></figure>
+<figure><img src="assets/phone-rotate-1.png" alt="The iPhone tilted to change spotlight direction in the desktop scene" loading="lazy"><figcaption>Changing orientation.</figcaption></figure>
+<figure><img src="assets/phone-rotate-2.png" alt="A different physical phone orientation while controlling the scene" loading="lazy"><figcaption>Exploring a second direction.</figcaption></figure>
+<figure><img src="assets/phone-rotate-3.png" alt="Phone pointing at another angle alongside the updated lighting scene" loading="lazy"><figcaption>Comparing the light response.</figcaption></figure>
+</div>
+<p class="evidence"><strong>My implementation history</strong> <code>9712312</code> initial webcam tracking · <code>07a39ad</code> scene integration</p>
+<a class="text-link" href="documents/Lighting-Teacher-Project-2-Report.pdf" target="_blank" rel="noopener">Read the final team report (PDF)</a>
+</section>
+<section class="case wrap" id="pass-it-on">
+<p class="kicker">Project 3 · Pass It On</p><h2>Making a shared bite visible</h2>
+<div class="case-text"><div><h3>My role</h3><p>I implemented the shared-bite glow and its Wokwi wiring. In solo mode, one bowl lift triggers a warm pulse. In group mode, two bowls lifted less than 20 seconds apart trigger a pulse. The LED then returns to the companion lighting.</p></div><div><h3>What I verified</h3><p>In the integrated Wokwi prototype, lifting bowl A triggered <code>Solo glow</code>. In group mode, two lifts 8.018 seconds apart triggered <code>Shared glow</code>. The companion also registered the lifts and updated its pace.</p></div></div>
+<figure class="circuit-case"><img src="assets/wokwi.webp" alt="Wokwi simulation with Arduino, bowl light sensors, a slide switch, LED and servo" loading="lazy"><figcaption>Integrated team simulation. My work includes the bowl-sensor inputs, solo/group control, and shared pulse behavior.</figcaption></figure>
+<div class="project-links"><a class="text-link" href="https://github.com/ishikaghosh04/CPSC-581-Augmented-Eating-Experience">View the project code</a><a class="text-link" href="documents/Pass-It-On-Project-3-Final-Report.pdf" target="_blank" rel="noopener">Read the final team report (PDF)</a></div>
+</section>
+<section id="about" class="about wrap"><div><p class="kicker">About me</p><h2>How I approach design</h2></div><div><p>I like interfaces that let people discover information through action. In Team Constellation, dragging or connecting stars revealed something about the people they represented. In Expertise Sharing, looking straight ahead gave users a starting point for exploring with head movement.</p><p>Across these projects, I learned to prototype the feedback as carefully as the input. Next time, I’d sketch more alternatives before coding and keep a dated record of what changed and why.</p></div></section>
+</main>
+<footer class="wrap footer"><span>Yasmin Semsar · CPSC 581 · Fall 2026</span><details><summary>Generative AI disclosure</summary><p>I used OpenAI ChatGPT to help organize course evidence, draft and edit portfolio text, and build the website layout, interaction diagram, and interactive cat playground. I supplied assignment feedback, project materials, and contribution details. Project 1 visuals come from my existing portfolio. The Project 2 screenshots and phone demonstration come from our final team report. The Project 3 image is from our integrated Wokwi simulation.</p></details></footer>
+<script src="cats.js" defer></script>
+</body>
+</html>
